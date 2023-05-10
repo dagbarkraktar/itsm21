@@ -10,6 +10,7 @@ from alembic import context
 from models.hwdb import HwDbModel, HwStatusesModel, HwTypesModel
 from models.maintenance import MaintenanceDbModel, MaintenanceDocsDbModel
 from models.employees import EmplListGasModel
+from modules.monitoring.models import SensorsLog
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

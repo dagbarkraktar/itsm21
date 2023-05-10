@@ -1,4 +1,4 @@
-from main import db
+from app_setup import db
 
 
 class EmplListGasModel(db.Model):
