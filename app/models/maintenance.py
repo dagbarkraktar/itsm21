@@ -2,7 +2,7 @@ from app_setup import db
 
 
 class MaintenanceDocsDbModel(db.Model):
-    __tablename__ = "maintenance_docs_db"
+    __tablename__ = 'maintenance_docs_db'
 
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer)
@@ -14,7 +14,7 @@ class MaintenanceDocsDbModel(db.Model):
 
 
 class MaintenanceDbModel(db.Model):
-    __tablename__ = "maintenance_db"
+    __tablename__ = 'maintenance_db'
 
     id = db.Column(db.Integer, primary_key=True)
     doc_id = db.Column(db.Integer)
