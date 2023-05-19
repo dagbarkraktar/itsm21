@@ -5,7 +5,7 @@ class HwDbModel(db.Model):
     __tablename__ = 'hw_db'
 
     id = db.Column(db.BigInteger, primary_key=True)
-    invnum = db.Column(db.String(12))
+    invnum = db.Column(db.String(20))
     type_id = db.Column(db.Integer, db.ForeignKey('hw_types.id', ondelete='CASCADE'))
     hw_type = db.relationship('HwTypesModel', backref='hw_db', lazy='joined')
     legacy_user = db.Column(db.String(50))
