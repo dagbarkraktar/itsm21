@@ -103,3 +103,6 @@ dev/
 # log files
 app.log
 app.log.*
+
+# tmp dumps directory
+dumps/
