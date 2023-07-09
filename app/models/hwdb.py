@@ -1,5 +1,8 @@
 from app_setup import db
 
+from models.employees import EmplListGasModel
+from models.maintenance import MaintenanceDbModel, MaintenanceDocsDbModel
+
 
 class HwDbModel(db.Model):
     __tablename__ = 'hw_db'
@@ -31,6 +34,36 @@ class HwDbModel(db.Model):
                                     db.ForeignKey('maintenance_docs_db.id', ondelete='CASCADE'))
     last_maintenance = db.relationship('MaintenanceDocsDbModel', backref='hw_db', lazy='joined')
 
+    def to_python(self):
+        return dict(
+            id=self.id,
+            invnum=self.invnum,
+            type_id=self.type_id,
+            hw_type=self.hw_type.to_python(),
+            legacy_user=self.legacy_user,
+            empl_id=self.empl_id,
+            empl_fio=self.empl_fio.to_python(),
+            location=self.location,
+            status_id=self.status_id,
+            status=self.status.to_python(),
+            manuf=self.manuf,
+            model=self.model,
+            vendor_id=self.vendor_id,
+            serialnum=self.serialnum,
+            year=self.year,
+            warranty=self.warranty,
+            accounting=self.accounting.strftime('%Y-%m-%d'),
+            comments=self.comments,
+            buhtext=self.buhtext,
+            buh_os=self.buh_os,
+            check=self.check,
+            gas_id=self.gas_id,
+            last_maintenance_id=self.last_maintenance_id,
+        )
+
+    def __repr__(self):
+        return '<{}(id:{})>'.format(self.__class__.__name__, self.id)
+
 
 class HwTypesModel(db.Model):
     __tablename__ = 'hw_types'
@@ -39,6 +72,13 @@ class HwTypesModel(db.Model):
     hw_type = db.Column(db.String(64))
     hw_type_ru = db.Column(db.String(64))
 
+    def to_python(self):
+        return dict(
+            id=self.id,
+            hw_type=self.hw_type,
+            hw_type_ru=self.hw_type_ru
+        )
+
 
 class HwStatusesModel(db.Model):
     __tablename__ = 'hw_statuses'
@@ -46,3 +86,10 @@ class HwStatusesModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     status_name = db.Column(db.String(64))
     status_name_ru = db.Column(db.String(64))
+
+    def to_python(self):
+        return dict(
+            id=self.id,
+            status_name=self.status_name,
+            status_name_ru=self.status_name_ru,
+        )

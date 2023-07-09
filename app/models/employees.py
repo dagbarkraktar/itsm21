@@ -14,3 +14,12 @@ class EmplListGasModel(db.Model):
     date_post = db.Column(db.DateTime)
     sx = db.Column(db.String(16))
     date_birth = db.Column(db.DateTime)
+
+    def to_python(self):
+        return dict(
+            id=self.id,
+            fio=self.fio,
+            depts=self.depts,
+            post=self.post,
+            post_dop=self.post_dop,
+        )
