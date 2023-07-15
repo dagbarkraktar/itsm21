@@ -1,4 +1,4 @@
-from models.hwdb import HwDbModel
+from modules.hwdb.models import HwDbModel
 from models.mixins import FilterMixin
 
 

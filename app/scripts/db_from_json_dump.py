@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 from app_setup import db, create_app
-from models.hwdb import HwDbModel, HwTypesModel, HwStatusesModel
+from modules.hwdb.models import HwDbModel, HwTypesModel, HwStatusesModel
 from models.employees import EmplListGasModel
 from models.maintenance import MaintenanceDocsDbModel, MaintenanceDbModel
 
