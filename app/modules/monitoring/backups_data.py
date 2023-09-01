@@ -3,7 +3,7 @@ from flask_restful import Resource
 import redis
 import json
 
-from config import Config
+from config import REDIS_HOST, REDIS_PORT
 
 MAX_RECORDS_QTY = 10
 
@@ -13,7 +13,8 @@ class Backups(Resource):
     def get(self):
 
         try:
-            redis_db = redis.Redis(host=Config.REDIS_HOST, port=Config.REDIS_PORT)
+            # redis_db = redis.Redis(host=Config.REDIS_HOST, port=Config.REDIS_PORT)
+            redis_db = redis.Redis(host=REDIS_HOST, port=REDIS_PORT)
 
             response = {}
             sdp_backups_data = []
