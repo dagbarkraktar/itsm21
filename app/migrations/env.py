@@ -11,6 +11,7 @@ from modules.hwdb.models import HwDbModel, HwTypesModel, HwStatusesModel
 from models.maintenance import MaintenanceDbModel, MaintenanceDocsDbModel
 from models.employees import EmplListGasModel
 from modules.monitoring.models import SensorsLog
+from modules.tickets.models import TicketModel
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
