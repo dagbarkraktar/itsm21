@@ -9,12 +9,13 @@ from modules.hwdb.models import HwDbModel, HwTypesModel, HwStatusesModel
 from models.employees import EmplListGasModel
 from models.maintenance import MaintenanceDocsDbModel, MaintenanceDbModel
 
-HWDB_JSON_DUMP = '../dumps/hwdb_2023-05-18.json'
-HWTYPES_JSON_DUMP = '../dumps/hw_types_2023-05-18.json'
-HWSTASUS_JSON_DUMP = '../dumps/hw_statuses_2023-05-18.json'
-EMPL_JSON_DUMP = '../dumps/empl_list_gas_2023-05-18.json'
-MNT_JSON_DUMP = '../dumps/mnt_2023-05-18.json'
-MNT_DOCS_JSON_DUMP = '../dumps/mnt_docs_2023-05-18.json'
+DUMP_DATE = '2024-12-25'
+HWDB_JSON_DUMP = '../dumps/{0}/hwdb_{0}.json'.format(DUMP_DATE)
+HWTYPES_JSON_DUMP = '../dumps/{0}/hw_types_{0}.json'.format(DUMP_DATE)
+HWSTASUS_JSON_DUMP = '../dumps/{0}/hw_statuses_{0}.json'.format(DUMP_DATE)
+EMPL_JSON_DUMP = '../dumps/{0}/empl_list_gas_{0}.json'.format(DUMP_DATE)
+MNT_JSON_DUMP = '../dumps/{0}/mnt_{0}.json'.format(DUMP_DATE)
+MNT_DOCS_JSON_DUMP = '../dumps/{0}/mnt_docs_{0}.json'.format(DUMP_DATE)
 
 
 if __name__ == "__main__":
@@ -140,6 +141,6 @@ if __name__ == "__main__":
                 unit.buhtext = line.get('buhtext')
                 unit.buh_os = line.get('buh_os')
                 unit.check = line.get('check')
-                unit.last_maintenance_id = line.get('last_maintenance_id')
+                unit.last_maintenance_id = line.get('last_maintenance_id') or None
                 db.session.add(unit)
                 db.session.commit()
