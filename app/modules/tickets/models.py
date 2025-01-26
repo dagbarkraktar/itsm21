@@ -13,11 +13,11 @@ class TicketModel(db.Model):
     status_id = db.Column(db.Integer)
     docs_status_id = db.Column(db.Integer)
 
-    subj = db.Column(db.String(80))
+    subj = db.Column(db.String(160))
     body = db.Column(db.Text)
-    reason = db.Column(db.String(80))
-    needs_to_be_done = db.Column(db.String(120))
-    comleted_work = db.Column(db.String(160))
+    reason = db.Column(db.String(160))
+    needs_to_be_done = db.Column(db.String(160))
+    comleted_work = db.Column(db.String(512))
 
     is_hotline = db.Column(db.Boolean, default=False)
     # hotline_status_id = db.Column(db.Integer)
