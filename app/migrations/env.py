@@ -8,6 +8,7 @@ from flask import current_app
 from alembic import context
 
 from modules.hwdb.models import HwDbModel, HwTypesModel, HwStatusesModel
+from modules.hwdb.models import HwTomskModels
 from models.maintenance import MaintenanceDbModel, MaintenanceDocsDbModel
 from models.employees import EmplListGasModel
 from modules.monitoring.models import SensorsLog

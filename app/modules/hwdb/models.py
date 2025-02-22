@@ -71,12 +71,14 @@ class HwTypesModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     hw_type = db.Column(db.String(64))
     hw_type_ru = db.Column(db.String(64))
+    hw_type_tomsk = db.Column(db.String(128))
 
     def to_python(self):
         return dict(
             id=self.id,
             hw_type=self.hw_type,
-            hw_type_ru=self.hw_type_ru
+            hw_type_ru=self.hw_type_ru,
+            hw_type_tomsk=self.hw_type_tomsk
         )
 
 
@@ -92,4 +94,23 @@ class HwStatusesModel(db.Model):
             id=self.id,
             status_name=self.status_name,
             status_name_ru=self.status_name_ru,
+        )
+
+
+class HwTomskModels(db.Model):
+    __tablename__ = 'hw_tomsk_models'
+
+    id = db.Column(db.Integer, primary_key=True)
+    line_num = db.Column(db.Integer)
+    hw_type = db.Column(db.String(128))
+    manuf = db.Column(db.String(128))
+    model = db.Column(db.String(128))
+
+    def to_python(self):
+        return dict(
+            id=self.id,
+            line_num=self.line_num,
+            hw_type=self.hw_type,
+            manuf=self.manuf,
+            model=self.model,
         )
