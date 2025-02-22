@@ -1,4 +1,5 @@
 from flask_restful import Resource, Api
+from flask_cors import CORS
 
 from app_setup import create_app
 
@@ -10,6 +11,7 @@ from modules.tickets.rest import TicketsList, TicketSingle
 
 app = create_app()
 api = Api(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 class HelloWorld(Resource):
