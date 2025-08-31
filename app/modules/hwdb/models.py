@@ -1,7 +1,9 @@
 from app_setup import db
+from config import CURRENT_YEAR
 
 from models.employees import EmplListGasModel
 from models.maintenance import MaintenanceDbModel, MaintenanceDocsDbModel
+from modules.maintenance.models import MaintenanceDocModel, MaintenanceRecordModel
 
 
 class HwDbModel(db.Model):
@@ -30,6 +32,12 @@ class HwDbModel(db.Model):
     check = db.Column(db.Integer)
     gas_id = db.Column(db.Integer)
     # event_id = db.Column(db.Integer)
+
+    # TODO: new maintenance (WIP)
+    # back_populates is more clearly for two directional relations
+    maintenance_records = db.relationship('MaintenanceRecordModel', back_populates='hardware')
+
+    # TODO: legacy maintenance
     last_maintenance_id = db.Column(db.Integer,
                                     db.ForeignKey('maintenance_docs_db.id', ondelete='CASCADE'))
     last_maintenance = db.relationship('MaintenanceDocsDbModel', backref='hw_db', lazy='joined')
@@ -58,7 +66,10 @@ class HwDbModel(db.Model):
             buh_os=self.buh_os,
             check=self.check,
             gas_id=self.gas_id,
+            # TODO: legacy maintenance
             last_maintenance_id=self.last_maintenance_id,
+            # TODO: new maintenance (WIP)
+            maintenance_records=[mr.doc_id for mr in self.maintenance_records],
         )
 
     def __repr__(self):

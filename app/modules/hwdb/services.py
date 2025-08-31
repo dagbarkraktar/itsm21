@@ -1,4 +1,6 @@
-from modules.hwdb.models import HwDbModel
+from sqlalchemy import and_, or_
+
+from modules.hwdb.models import HwDbModel, HwTomskModels
 from models.mixins import FilterMixin
 
 
@@ -7,7 +9,17 @@ class HwUnitsService(FilterMixin):
     @classmethod
     def get_hw_units_list(cls, filters=None):
         query = HwDbModel.query
-        query = query.order_by(HwDbModel.id.desc())
+        # query = query.order_by(HwDbModel.id.asc())
+        query = query.order_by(
+            HwDbModel.location.asc(),
+            HwDbModel.invnum.asc(),
+            HwDbModel.type_id.asc()
+        )
+        # query = query.order_by(
+        #     HwDbModel.manuf.asc(),
+        #     HwDbModel.model.asc(),
+        #     HwDbModel.serialnum.asc()
+        # )
         query = cls.apply_filters(query, HwDbModel, filters)
         # query = query.limit(limit).offset(offset)
         hw_units = query.all()
@@ -48,6 +60,16 @@ class HwUnitsService(FilterMixin):
         if type_id:
             query = query.filter(HwDbModel.type_id == type_id)
         return query.first()
+
+    @classmethod
+    def get_hw_list_by_type(cls, type_id, filters=None):
+        if not type_id:
+            return None
+        query = HwDbModel.query
+        query = query.filter(HwDbModel.type_id == type_id)
+        if filters:
+            query = cls.apply_filters(query, HwDbModel, filters)
+        return query.all()
 
     @classmethod
     def get_hw_tomsk_models_list(cls, filters=None):

@@ -33,7 +33,9 @@ class TicketModel(db.Model):
     ticket_comments_json = db.Column(JSONB)
 
     def to_python(self):
-        hotline_ticket_date = (self.hotline_ticket_date.strftime('%Y-%m-%d')
+        # hotline_ticket_date = (self.hotline_ticket_date.strftime('%Y-%m-%d')
+        #                        if self.hotline_ticket_date else None)
+        hotline_ticket_date = (self.hotline_ticket_date.strftime('%d.%m.%y')
                                if self.hotline_ticket_date else None)
         hotline_fetch_date = (self.hotline_fetch_date.strftime('%Y-%m-%d')
                               if self.hotline_fetch_date else None)
